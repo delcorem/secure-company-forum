@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Big Bad Corp Discussion Forum</title>
+</head>
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-4ZPLezkTZTsojWFhpdFembdzFudphhoOzIunR1wH6g1WQDzCAiPvDyitaK67mp0+" crossorigin="anonymous">
+<body style="font-family:Trebuchet MS; color:white; background-color:#496582">
+<h1 style="text-align:center;" >Big Bad Corp Discussion Forum</h1><br><br><br>
+
+<h2 style="background-color: #27415b; text-align:center;">New Site Feedback Thread</h2>
+
+	<br><br><br>
+	
+	<table class="pure-table" th:if="${userList != null AND userList != ''}">
+		<tr>
+			<th>Email</th>
+		    <th>Discussion</th>
+		    <th>Date</th>
+		    <th>Time</th>
+	   </tr>
+		<tr th:each="s : ${userList}">
+			<td style="background-color:#bcc6d1; color:#323e4b; padding:15px" th:text="${s.email}"></td>
+			<td style="background-color:#2e363f; color:#d8e1ec; padding:15px" th:text="${s.userDiscussion}"></td>
+			<td style="background-color:#bcc6d1; color:#323e4b; padding:15px" th:text="${s.discussionDate}"></td>
+			<td style="background-color:#2e363f; color:#d8e1ec; padding:15px" th:text="${s.discussionTime}"></td>
+		</tr>
+	</table> 
+	
+	<br><br><br>
+
+	<hr size="1" width="90%" color="white"><br><br><br>
+
+ 	Join the discussion by posting a reply!<br><br>
+
+	<form method="post" action="" th:action="@{/insertUser}" th:object="${user}">
+		<input type="hidden" name="discussionId" th:field="*{discussionId}" />
+		<input type="hidden" name="email" th:field="*{email}" />
+		<br><br>
+	Post a Reply: <input style="background-color:#bcc6d1; color:#22303f; height:200px; width:600px;" type="text" name="userDiscussion" th:field="*{userDiscussion}" />
+		<br>
+		<input type="hidden" name="discussionDate" th:field="*{discussionDate}" />
+		<input type="hidden" name="discussionTime" th:field="*{discussionTime}" />
+		<input type="submit" value="Submit" />
+	</form> 
+	
+	<br><br>
+	<p><a href="/" th:ref="@{/secure/index}">Back to home page</a></p>
+	<p><a href="#" th:href="@{/logout}">Logout</a></p>
+</body>
+</html>

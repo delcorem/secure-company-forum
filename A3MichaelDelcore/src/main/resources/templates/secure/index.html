@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Big Bad Corp Forum</title>
+</head>
+<body style="font-family:Trebuchet MS; color:white; background-color:#496582">
+	<h1>Welcome to the Big Bad Corp Forum</h1>
+	
+	You are logged in as: [[${email}]]<br>
+	Your permission roles are:
+	<ul>
+		<li th:each="role: ${roleList}" th:text ="${role}"></li>
+	</ul>
+	
+	Join in on a discussion:
+	<ul>
+		<li><a href="/secure/forum" th:ref="@{/secure/forum}">New Site Feedback Thread</a></li>
+	</ul>
+	
+	
+	<p><a href="#" th:href="@{/logout}">Logout</a></p>
+</body>
+</html>
